@@ -12,6 +12,7 @@ const catalogRouter = require("./routes/catalog"); // Import routes for "catalog
 const compression = require("compression");
 const helmet = require("helmet");
 const requestLogger = require("./middleware/requestLogger");
+const { sessionMiddleware } = require("./middleware/authSession");
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use(requestLogger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(sessionMiddleware);
 
 app.use(helmet());
 app.use(

@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  .row.justify-content-center
+    .col-md-6.col-lg-5
+      .card.shadow-sm.mt-4
+        .card-body
+          h1.card-title.mb-3= title
+          p.text-muted.mb-4 Use the demo credentials to sign in and manage the library.
+
+          if error
+            .alert.alert-danger(role='alert')= error
+
+          form(action='/users/login' method='post')
+            input(type='hidden' name='returnTo' value=returnTo)
+
+            .mb-3
+              label.form-label(for='username') Username
+              input#username.form-control(type='text' name='username' required autofocus value=username)
+
+            .mb-3
+              label.form-label(for='password') Password
+              input#password.form-control(type='password' name='password' required)
+
+            button.btn.btn-primary(type='submit') Sign in

@@ -15,6 +15,15 @@ html(lang='en')
             ul(class='sidebar-nav')
               li
                 a(href='/catalog') Home
+              if currentUser
+                li
+                  span Signed in as #{currentUser.displayName}
+                li
+                  form(action='/users/logout' method='post')
+                    button.btn.btn-link.p-0(type='submit') Logout
+              else
+                li
+                  a(href='/users/login?returnTo=/catalog') Login
               li
                 a(href='/catalog/books') All books
               li
